@@ -22,6 +22,12 @@ namespace AlphaEngine {
 		EventCategoryMouseButton  = BIT(4)
 	};
 
+#define EVENT_CLASS_TYPE(type) static EventType GetStaticEvent() { return EventType::##type; }\
+							   virtual EventType GetEventType() const override  { GetStaticEvent(); }\
+						       virtual const char* GetName() const override {return #type;}
+
+#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;} 
+			            
 	class AlphaEngine_API Event {
 		friend class EventDispatcher;
 
@@ -29,7 +35,7 @@ namespace AlphaEngine {
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
-		virtual std::string toString() { return GetName(); }
+		virtual std::string ToString() const { return GetName(); }
 	
 		inline bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
