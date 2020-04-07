@@ -1,5 +1,5 @@
 #pragma once
-#include "../Core.h"
+#include "AlphaEngine/Core.h"
 #include <string>
 #include <functional>
 
@@ -23,7 +23,7 @@ namespace AlphaEngine {
 	};
 
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticEvent() { return EventType::##type; }\
-							   virtual EventType GetEventType() const override  { GetStaticEvent(); }\
+							   virtual EventType GetEventType() const override  { return GetStaticEvent(); }\
 						       virtual const char* GetName() const override {return #type;}
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;} 
@@ -44,4 +44,28 @@ namespace AlphaEngine {
 		bool m_Handled = false;
 	};
 
+	class AlphaEngine_API EventDispatcher {
+		
+		template<typename T>
+		using EventFunc = std::function<bool(T&)>;
+
+	public:
+		EventDispatcher(Event& event)
+			: m_Event(event) {}
+
+		template<typename T>
+		bool Dispatch(EventFunc<T> func) {
+			if (m_Event.GetEventType == T::GetStaticType())
+				m_Event.m_Handled = func(*(T*)&m_Event);
+			return m_Event.m_Handled;
+		}
+
+
+	private:
+		Event& m_Event;
+	};
+
+	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
+		return os << e.ToString();
+	}
 }

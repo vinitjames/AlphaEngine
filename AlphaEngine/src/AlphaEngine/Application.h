@@ -1,5 +1,6 @@
 #pragma once
 #include "core.h"
+#include "Events/ApplicationEvent.h"
 namespace AlphaEngine {
 	class AlphaEngine_API Application
 	{   public:

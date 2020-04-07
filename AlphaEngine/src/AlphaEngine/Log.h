@@ -1,6 +1,8 @@
 #pragma once
+#include <memory>
 #include "core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 namespace AlphaEngine {
 	class AlphaEngine_API Log
 	{   private:
