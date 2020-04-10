@@ -1,8 +1,6 @@
 #pragma once
 #include "Event.h"
 
-#include <sstream>
-
 namespace AlphaEngine {
 
 	class AlphaEngine_API KeyEvent : public Event {

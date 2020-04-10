@@ -1,3 +1,4 @@
+#include "Aepch.h"
 #include "Application.h"
 #include "Log.h"
 namespace AlphaEngine {
@@ -7,7 +8,7 @@ namespace AlphaEngine {
 	Application::~Application() {
 	}
 	void Application::Run() {
-		WindowResizeEvent w(1230,580);
+		WindowResizeEvent w(1230,58);
 		AE_TRACE(w);
 
 		while (true);

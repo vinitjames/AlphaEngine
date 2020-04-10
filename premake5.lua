@@ -6,6 +6,11 @@ workspace "AlphaEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDirs = {}
+IncludeDirs["GLFW"] = "AlphaEngine/3rdparty/glfw/include"
+
+include "AlphaEngine/3rdparty/glfw"
+
 project "AlphaEngine"
 	location "AlphaEngine"
 	kind "SharedLib"
@@ -14,11 +19,20 @@ project "AlphaEngine"
 	targetdir ("bin/" ..outputdir.. "/%{prj.name}")
 	objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
 
+	pchheader "Aepch.h"
+	pchsource "AlphaEngine/src/Aepch.cpp"
+	
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 		}
-	includedirs {"%{prj.name}/3rdparty/spdlog/include"}
+	includedirs {"%{prj.name}/3rdparty/spdlog/include",
+	             "%{prj.name}/src",
+				 "%{IncludeDirs.GLFW}"}
+
+	links {"GLFW",
+		   "opengl32.lib"
+	}
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"

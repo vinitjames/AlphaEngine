@@ -1,7 +1,5 @@
 #pragma once
 #include "Event.h"
-#include<sstream>
-#include<string>
 
 namespace AlphaEngine {
 	class AlphaEngine_API MouseMovedEvent : public Event {

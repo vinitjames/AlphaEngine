@@ -1,7 +1,7 @@
 #pragma once
+#include "Aepch.h"
 #include "AlphaEngine/Core.h"
-#include <string>
-#include <functional>
+
 
 namespace AlphaEngine {
 	
