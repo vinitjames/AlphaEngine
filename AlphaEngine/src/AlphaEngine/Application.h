@@ -1,6 +1,8 @@
 #pragma once
 #include "core.h"
-#include "Events/ApplicationEvent.h"
+#include "Events/Event.h"
+#include "Window.h"
+
 namespace AlphaEngine {
 	class AlphaEngine_API Application
 	{   public:
@@ -8,8 +10,10 @@ namespace AlphaEngine {
 		virtual ~Application();
 
 		void Run();
-		//------- to be implemented in client-----------
-		
+	private:
+		std::unique_ptr<Window> m_Window;
+		bool m_Running = true;
 	};
+
 	Application* CreateApplication();
 }
