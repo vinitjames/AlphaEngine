@@ -21,6 +21,12 @@ namespace AlphaEngine {
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
+		virtual void SetWindowSizeCallback();
+		virtual void SetWindowCloseCallback();
+		virtual void SetKeyCallback();
+		virtual void SetMouseMoveCallback();
+		virtual void SetMouseButtonCallback();
+		virtual void SetMouseScrollCallback();
 
 		GLFWwindow* m_Window;
 		struct WindowsData {

@@ -22,8 +22,8 @@ namespace AlphaEngine {
 		EventCategoryMouseButton  = BIT(4)
 	};
 
-#define EVENT_CLASS_TYPE(type) static EventType GetStaticEvent() { return EventType::##type; }\
-							   virtual EventType GetEventType() const override  { return GetStaticEvent(); }\
+#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
+							   virtual EventType GetEventType() const override  { return GetStaticType(); }\
 						       virtual const char* GetName() const override {return #type;}
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;} 
@@ -55,7 +55,7 @@ namespace AlphaEngine {
 
 		template<typename T>
 		bool Dispatch(EventFunc<T> func) {
-			if (m_Event.GetEventType == T::GetStaticType())
+			if (m_Event.GetEventType() == T::GetStaticType())
 				m_Event.m_Handled = func(*(T*)&m_Event);
 			return m_Event.m_Handled;
 		}

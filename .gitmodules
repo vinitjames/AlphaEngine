@@ -2,3 +2,6 @@
 	path = AlphaEngine/3rdparty/spdlog
 	url = https://github.com/gabime/spdlog
 
+[submodule "AlphaEngine/3rdparty/GLFW"]
+	path = AlphaEngine/3rdparty/GLFW
+	url = https://github.com/TheCherno/glfw

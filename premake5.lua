@@ -7,9 +7,9 @@ workspace "AlphaEngine"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDirs = {}
-IncludeDirs["GLFW"] = "AlphaEngine/3rdparty/glfw/include"
+IncludeDirs["GLFW"] = "AlphaEngine/3rdparty/GLFW/include"
 
-include "AlphaEngine/3rdparty/glfw"
+include "AlphaEngine/3rdparty/GLFW"
 
 project "AlphaEngine"
 	location "AlphaEngine"
@@ -33,6 +33,7 @@ project "AlphaEngine"
 	links {"GLFW",
 		   "opengl32.lib"
 	}
+
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
